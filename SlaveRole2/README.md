@@ -1,3 +1,8 @@
+What this file do?
+==================
+
+This file is a Role for Configuring the Slave Node 2 of Kubernetes Cluster.
+
 Role Name
 =========
 
