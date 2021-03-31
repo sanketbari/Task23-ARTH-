@@ -9,7 +9,7 @@
            state: running
            tags:
                    Node: slave1
-           aws_access_key: NJIGDFFR***********
+           aws_access_key: NJIGDFFR**********
            aws_secret_key: GXHWSJ****************************       
            
 
