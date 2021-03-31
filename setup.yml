@@ -1,0 +1,20 @@
+- name: "configure k8s Masternode"
+  hosts: tag_Node_master
+  roles:
+   - role: "MasterRole"
+
+- name: "configure k8s workernode1"
+  hosts: tag_Node_slave1
+  roles:
+   - role: "SlaveRole1"
+
+- name: "configure k8s workernode2"
+  hosts: tag_Node_slave2  
+  roles:
+   - role: "SlaveRole2"
+
+- name: "Deploy Wordpress_Mysql containers"
+  hosts: tag_Node_master
+  roles:
+   - role: "wordPress-Mysql"      
+

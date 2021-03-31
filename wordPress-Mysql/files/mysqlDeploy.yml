@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        env:
+         - name: MYSQL_ROOT_PASSWORD
+           valueFrom:
+            secretKeyRef:
+             name: secretfile
+             key: Mysql_Password
+         - name: MYSQL_DATABASE
+           valueFrom:
+            secretKeyRef:
+             name: secretfile
+             key: Mysql_Name
+         - name: MYSQL_USER
+           valueFrom:
+            secretKeyRef:
+             name: secretfile
+             key: Mysql_Username
+         - name: MYSQL_PASSWORD
+           valueFrom:
+            secretKeyRef:
+             name: secretfile
+             key: Mysql_Userpassword
+      nodeSelector:
+           backend: mysql

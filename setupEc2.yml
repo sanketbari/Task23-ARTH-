@@ -1,0 +1,15 @@
+- name: "Launch Ec2 for  masternode"
+  hosts: localhost
+  roles:
+   - role: "Ec2RoleMaster"
+
+- name: "Launch Ec2 for  Slave1"
+  hosts: localhost
+  roles:
+   - role: "Ec2RoleSlave1"
+
+- name: "Launch Ec2 for  Slave2"
+  hosts: localhost
+  roles:
+   - role: "Ec2RoleSlave2"
+

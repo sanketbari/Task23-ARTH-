@@ -1,0 +1,85 @@
+  - name: Installing Docker
+    command: "yum install docker -y"
+    register: x
+
+          
+  - name: Setting Docker rpm for yum
+    yum_repository:
+        name: Docker-CE-epel
+        description: EPEL YUM repo for Docker
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+        gpgcheck: no
+    when: x.rc!=0
+
+
+  - name: Starting Docker Service
+    service:
+        name: docker
+        state: started
+        enabled: yes
+
+      
+  - name: copying kubernetes repo
+    copy:
+        src: kubernetes.repo
+        dest: /etc/yum.repos.d/    
+
+  - name: Remove swapfile from /etc/fstab
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+    with_items:
+      - swap
+      - none
+
+  - name: Disable swap
+    command: swapoff -a
+    when: ansible_swaptotal_mb > 0
+  
+  
+  - name: Installing Kubectl Kubeadm Kubelet    
+    command: yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+
+  - name: copying Cgroup Driver change File
+    copy:
+        src: daemon.json
+        dest: /etc/docker/
+
+  - name: Starting Docker Service
+    service:
+        name: docker
+        state: restarted
+        enabled: yes
+ 
+  - name: Installing route-tc
+    package:
+            name: iproute-tc
+            state: present
+
+  - name: Starting kubelet Service
+    service:
+        name: kubelet
+        state: started
+        enabled: yes
+            
+  - name: copying bridge iptables File
+    copy:
+        src: k8s.conf
+        dest: /etc/sysctl.d/
+
+  
+  - name: Refreshisg with kubectl --system
+    command: sysctl --system
+
+
+  - name: Join with the Master Node
+    command: "{{lookup('file', './tokenFile') }}"
+
+  - name: "picking fqdn name"
+    local_action:
+            module: copy
+            content : "{{ ansible_facts['fqdn'] }}"
+            dest: "./fqdn2.txt"
+  

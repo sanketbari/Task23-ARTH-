@@ -1,0 +1,15 @@
+   - ec2_instance:
+           region: ap-south-1
+           image_id: ami-081bb417559035fe8
+           instance_type: t2.micro
+           vpc_subnet_id: subnet-b28463d9          
+           security_group: sg-ad9e2cd6
+           key_name: KeyComp
+           name: OS_For_Slave1
+           state: running
+           tags:
+                   Node: slave1
+           aws_access_key: AKIA5XD2Q7YTTIDEUAF5
+           aws_secret_key: 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       
+           
+
