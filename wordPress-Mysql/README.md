@@ -1,3 +1,14 @@
+What this file do?
+==================
+
+This file is a Role for launching the wordpress and mysql deployments on the respective nodes of Kubernetes Cluster.
+
+How this file works?
+====================
+
+This role label the nodes with appropriate labels and deploy the pods on the respective nodes.
+This role also expose the wordpress node with NodePort IP to the outside world whereas MySql node is isolated.
+
 Role Name
 =========
 
