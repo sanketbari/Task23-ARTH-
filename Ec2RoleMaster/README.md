@@ -1,7 +1,7 @@
 What this file do?
 ==================
 
-This file is a Role for Configuring the Master Node of Kubernetes Cluster.
+This file is a Role for Launching a Ec2 Instance at AWS cloud for the Master Node of Kubernetes Cluster.
 
 Role Name
 =========
