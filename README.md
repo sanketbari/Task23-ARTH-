@@ -24,7 +24,7 @@ These above files will launch 3 Ec2 Instances for Master Node and 2 Slave Nodes 
 :large_orange_diamond: Change "ansible_private_key='path of your key" in ansible conf file that is /etc/ansible/ansible.cfg</br>
 :large_orange_diamond: Change permission of your private key by run cmd in bash shell "chmod 400 'key name'"</br>
 
-:milky_way: For dyanamic inventory run following commands in bash shell
+:milky_way: For dynamic inventory run following commands in bash shell
 -----------------------------------------------------------------------
 
 :pushpin: export AWS_ACCESS_KEY_ID='access-key-id'</br>
